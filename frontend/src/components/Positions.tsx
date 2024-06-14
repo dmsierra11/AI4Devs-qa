@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, Container, Row, Col, Form, Button } from 'react-bootstrap';
-import axios from 'axios';
 
 type Position = {
     id: number;
@@ -18,8 +17,12 @@ const Positions: React.FC = () => {
     useEffect(() => {
         const fetchPositions = async () => {
             try {
-                const response = await axios.get('http://localhost:3010/positions');
-                const formattedPositions = response.data.map((pos: Position) => ({
+                const response = await fetch('http://localhost:3010/positions');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                const formattedPositions = data.map((pos: Position) => ({
                     ...pos,
                     applicationDeadline: formatDate(pos.applicationDeadline)
                 }));
