@@ -106,7 +106,7 @@ paths:
                 type: object
                 properties:
                   id:
-                    type: string
+                    type: integer
                     description: Unique identifier for the candidate
                   firstName:
                     type: string
@@ -241,7 +241,7 @@ paths:
                 type: object
                 properties:
                   id:
-                    type: string
+                    type: integer
                     description: Unique identifier for the candidate
                   firstName:
                     type: string
